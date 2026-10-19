@@ -6,6 +6,15 @@
 
 ---
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20GitHub%20Pages-10b981?style=for-the-badge&logo=github)](https://vidishagupta.github.io/spoonflow/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-818cf8?style=for-the-badge&logo=github)](https://github.com/vidishagupta/spoonflow)
+[![Accessibility WCAG AAA](https://img.shields.io/badge/Accessibility-WCAG%20AAA-06b6d4?style=for-the-badge)](https://vidishagupta.github.io/spoonflow/)
+
+🔗 **Live Deployment**: [https://vidishagupta.github.io/spoonflow/](https://vidishagupta.github.io/spoonflow/)  
+📦 **GitHub Repository**: [https://github.com/vidishagupta/spoonflow](https://github.com/vidishagupta/spoonflow)
+
+---
+
 ## 📖 Introduction
 Traditional productivity software (Jira, Notion, Todoist) assumes endless stamina and floods users with overdue red badges when fatigue hits. 
 

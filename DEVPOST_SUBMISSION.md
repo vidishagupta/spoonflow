@@ -5,6 +5,11 @@
 
 ---
 
+* **Live Working Demo**: [https://vidishagupta.github.io/spoonflow/](https://vidishagupta.github.io/spoonflow/)
+* **GitHub Repository**: [https://github.com/vidishagupta/spoonflow](https://github.com/vidishagupta/spoonflow)
+
+---
+
 ## 🌟 Pitch & Quick Overview
 * **Project Name**: **SpoonFlow**
 * **Elevator Pitch**: SpoonFlow brings Christine Miserandino's medical **Spoon Theory** into daily task management. Instead of assuming endless 9-to-5 stamina and shaming users with red overdue badges, SpoonFlow budgets tasks by biological and cognitive energy, shields the nervous system from crash cycles with 1-click deferral, and drafts compassionate boundary messages to protect your capacity.
