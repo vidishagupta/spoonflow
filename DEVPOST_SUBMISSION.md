@@ -6,6 +6,7 @@
 ---
 
 * **Live Working Demo**: [https://vidishagupta.github.io/spoonflow/](https://vidishagupta.github.io/spoonflow/)
+* **YouTube Video Walkthrough**: [https://youtu.be/ADIYajBt5Ds](https://youtu.be/ADIYajBt5Ds)
 * **GitHub Repository**: [https://github.com/vidishagupta/spoonflow](https://github.com/vidishagupta/spoonflow)
 
 ---

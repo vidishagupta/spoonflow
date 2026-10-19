@@ -7,10 +7,12 @@
 ---
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20GitHub%20Pages-10b981?style=for-the-badge&logo=github)](https://vidishagupta.github.io/spoonflow/)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Video%20Demo-FF0000?style=for-the-badge&logo=youtube)](https://youtu.be/ADIYajBt5Ds)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-818cf8?style=for-the-badge&logo=github)](https://github.com/vidishagupta/spoonflow)
 [![Accessibility WCAG AAA](https://img.shields.io/badge/Accessibility-WCAG%20AAA-06b6d4?style=for-the-badge)](https://vidishagupta.github.io/spoonflow/)
 
 🔗 **Live Deployment**: [https://vidishagupta.github.io/spoonflow/](https://vidishagupta.github.io/spoonflow/)  
+🎥 **YouTube Video Walkthrough**: [https://youtu.be/ADIYajBt5Ds](https://youtu.be/ADIYajBt5Ds)  
 📦 **GitHub Repository**: [https://github.com/vidishagupta/spoonflow](https://github.com/vidishagupta/spoonflow)
 
 ---
