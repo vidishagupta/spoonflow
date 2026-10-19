@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpoonFlow — Chronic Illness, Neurodivergent & Burnout-Aware Energy Budgeting OS</title>
+  <meta name="description" content="SpoonFlow brings medical Spoon Theory to daily planning. Pace cognitive energy, protect biological capacity, auto-defer overload, and generate compassionate workplace boundaries. Built for the Taskforge Hackathon.">
+  <meta name="keywords" content="spoon theory, chronic illness, ADHD, autism, burnout, neurodivergent, accessibility, WCAG AAA, taskforge, devpost">
+  <meta name="author" content="SpoonFlow Team">
+
+  <!-- Open Graph / Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SpoonFlow — Energy Budgeting OS for Chronic Illness & Burnout">
+  <meta property="og:description" content="Work should fit people, not force people to fit the tool. Plan with biological energy, not arbitrary hours.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Modern Typography (Inter & OpenDyslexic Fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Live Announcer for Screen Readers (WCAG AAA) -->
+  <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- App Header -->
+  <header class="app-header" role="banner">
+    <div class="header-content">
+      <div class="brand-wrapper">
+        <div class="brand-logo-icon" aria-hidden="true">
+          <!-- Stylized Spoon SVG -->
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.686 2 6 4.686 6 8c0 2.5 1.5 4.5 3.5 5.3V21a1 1 0 001 1h3a1 1 0 001-1v-7.7c2-.8 3.5-2.8 3.5-5.3 0-3.314-2.686-6-6-6zm0 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-title">SpoonFlow</span>
+          <span class="brand-badge">Taskforge 2026</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-open-checkin" class="btn-secondary" aria-label="Calibrate daily spoons (Alt+S)" title="Keyboard shortcut: Alt+S">
+          <span>🌅</span> Morning Check-In
+        </button>
+        <button id="btn-open-boundary" class="btn-amber" aria-label="Generate gentle boundary message (Alt+B)" title="Keyboard shortcut: Alt+B">
+          <span>🛡️</span> Boundary Shield
+        </button>
+        <button id="btn-open-new-task" class="btn-primary" aria-label="Add new task (Alt+N)" title="Keyboard shortcut: Alt+N">
+          <span>+</span> Add Task
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <div class="app-container">
+    <!-- Accessibility Toolbar (WCAG AAA) -->
+    <aside class="accessibility-bar" aria-label="Accessibility options">
+      <span class="a11y-label">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+        </svg>
+        Accessibility
+      </span>
+      <div class="a11y-controls">
+        <button id="btn-dyslexic" class="a11y-btn" aria-pressed="false" title="Toggle Dyslexia-friendly typography">
+          📖 Dyslexia Font
+        </button>
+        <button id="btn-contrast" class="a11y-btn" aria-pressed="false" title="Toggle 7:1 High-contrast mode">
+          👁️ High Contrast
+        </button>
+        <button id="btn-motion" class="a11y-btn" aria-pressed="false" title="Disable all non-essential motion">
+          ⏸️ Reduced Motion
+        </button>
+        <button id="btn-text-scale" class="a11y-btn" title="Cycle text size">
+          Aa Text: 100%
+        </button>
+        <button id="btn-sound" class="a11y-btn active" aria-pressed="true" title="Toggle gentle audio chimes">
+          🔊 Sound: On
+        </button>
+      </div>
+    </aside>
+
+    <!-- Persona Quick-Switcher (Demo Acceleration for Devpost Judges) -->
+    <section class="persona-strip" aria-label="Judge demo personas">
+      <div class="persona-title">
+        <span>⚡ Quick Test Personas for Judges:</span>
+      </div>
+      <div class="persona-buttons">
+        <button class="btn-persona active" data-persona="alex" title="Dev with ADHD burnout (6 spoons)">
+          Alex (ADHD Burnout)
+        </button>
+        <button class="btn-persona" data-persona="maya" title="Student with Long COVID (3 spoons, triggers Overcapacity Shield)">
+          Maya (Long COVID - 3 Spoons)
+        </button>
+        <button class="btn-persona" data-persona="jordan" title="Freelancer with Chronic Fatigue (8 spoons)">
+          Jordan (Chronic Fatigue)
+        </button>
+        <button class="btn-persona" data-persona="blank" title="Start with clean blank slate">
+          Clean Slate
+        </button>
+      </div>
+    </section>
+
+    <!-- Main Content Region -->
+    <main id="main-content" role="main">
+      <!-- Dynamic Spoon Reservoir Hero -->
+      <section class="hero-reservoir" aria-labelledby="reservoir-title">
+        <div class="reservoir-grid">
+          <div class="reservoir-headline">
+            <div id="reservoir-status-tag" class="reservoir-status-tag tag-optimal">
+              ✨ Optimal Energy Flow
+            </div>
+            <h1 id="reservoir-title" class="reservoir-title">Mindful Productivity</h1>
+            <p id="reservoir-desc" class="reservoir-desc">
+              Your workload aligns with your biological energy capacity. Pace steadily and honor your restoration tasks.
+            </p>
+
+            <!-- Visual Spoon Token Meter -->
+            <div class="spoon-array-container">
+              <div class="spoon-array-label">
+                <span>Daily Energy Reservoir</span>
+                <span id="metric-preserved" style="color:var(--spoon-emerald); font-weight:700;">4 Spoons Preserved</span>
+              </div>
+              <div id="spoon-array" class="spoon-array" aria-label="Visual representation of daily energy spoons">
+                <!-- Spoon tokens injected by js/ui.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Quantitative Metrics Card -->
+          <div class="reservoir-metrics">
+            <div class="metrics-row">
+              <div class="metric-item">
+                <span id="metric-budget" class="metric-val">6</span>
+                <span class="metric-label">Daily Budget</span>
+              </div>
+              <div class="metric-item">
+                <span id="metric-spent" class="metric-val val-amber">2</span>
+                <span class="metric-label">Spoons Spent</span>
+              </div>
+              <div class="metric-item">
+                <span id="metric-remaining" class="metric-val val-emerald">4</span>
+                <span class="metric-label">Remaining</span>
+              </div>
+              <div class="metric-item">
+                <span id="metric-restored" class="metric-val val-cyan">+1</span>
+                <span class="metric-label">Restored</span>
+              </div>
+            </div>
+
+            <!-- Visual Energy Depletion Gauge -->
+            <div>
+              <div class="progress-bar-wrapper" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33">
+                <div id="progress-bar-fill" class="progress-bar-fill" style="width: 33%;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-top:0.4rem; font-size:var(--text-xs); color:var(--text-muted);">
+                <span>Morning Energy</span>
+                <span>Depletion Threshold</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Over-Capacity Shield Alert Banner (Appears dynamically when Over-Capacity) -->
+      <section id="shield-alert-banner" class="shield-alert-banner" style="display:none;" aria-live="polite">
+        <div class="shield-content">
+          <div class="shield-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v6h-2V7zm0 8h2v2h-2v-2z"/>
+            </svg>
+          </div>
+          <div class="shield-text">
+            <h3>Over-Capacity Shield Activated</h3>
+            <p id="shield-text-detail">You have planned 7 spoons on a 3-spoon budget. Protect your nervous system.</p>
+          </div>
+        </div>
+        <button id="btn-trigger-rebalance" class="btn-amber">
+          🛡️ Activate Rest & Rebalance
+        </button>
+      </section>
+
+      <!-- Task Engine Section -->
+      <section class="tasks-section" aria-labelledby="tasks-heading">
+        <div class="tasks-header">
+          <div class="tasks-headline">
+            <h2 id="tasks-heading">Today's Paced Tasks</h2>
+            <span id="task-count-pill" class="tasks-count-pill">5 Active</span>
+          </div>
+
+          <!-- Accessible Filter Tabs -->
+          <nav class="tasks-filter-bar" aria-label="Filter tasks by cognitive load">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">To Do</button>
+            <button class="filter-btn" data-filter="cognitive">🧠 Mental Focus</button>
+            <button class="filter-btn" data-filter="social">🗣️ Social Drain</button>
+            <button class="filter-btn" data-filter="micro">⚡ Micro-Tasks</button>
+            <button class="filter-btn" data-filter="restorative">🌿 Restorative (+Spoon)</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+          </nav>
+        </div>
+
+        <!-- Task Grid -->
+        <div id="tasks-container" class="tasks-grid">
+          <!-- Injected dynamically by ui.js -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =========================================================================
+       MODALS & OVERLAYS
+       ========================================================================= -->
+
+  <!-- Modal 1: New Task Modal -->
+  <div id="modal-new-task" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-task-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-task-title">Add Paced Task</h2>
+        <button class="btn-icon modal-close-btn" aria-label="Close dialog">✕</button>
+      </div>
+      <form id="form-new-task">
+        <div class="form-group">
+          <label for="input-task-title" class="form-label">What needs your energy?</label>
+          <input type="text" id="input-task-title" required placeholder="e.g., Draft lab report, Review presentation" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label for="input-task-notes" class="form-label">Gentle notes or accommodation</label>
+          <input type="text" id="input-task-notes" placeholder="e.g., Leave camera off; stop after 20 minutes">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Estimated Spoon Cost</label>
+          <span class="form-hint">How much energy does this actually take from your battery?</span>
+          <div class="spoon-picker">
+            <button type="button" class="spoon-option-btn selected" data-spoons="1">
+              <span>🥄 1</span>
+              <small>Low</small>
+            </button>
+            <button type="button" class="spoon-option-btn" data-spoons="2">
+              <span>🥄 2</span>
+              <small>Medium</small>
+            </button>
+            <button type="button" class="spoon-option-btn" data-spoons="3">
+              <span>🥄 3</span>
+              <small>Heavy</small>
+            </button>
+            <button type="button" class="spoon-option-btn" data-spoons="4">
+              <span>🥄 4</span>
+              <small>Intense</small>
+            </button>
+            <button type="button" class="spoon-option-btn" data-spoons="5">
+              <span>🥄 5</span>
+              <small>Exhausting</small>
+            </button>
+          </div>
+          <input type="hidden" id="input-spoon-cost" value="1">
+        </div>
+
+        <div class="form-group">
+          <label for="input-drain-type" class="form-label">Drain Category</label>
+          <select id="input-drain-type">
+            <option value="cognitive">🧠 High Mental Focus (Problem solving, writing, analytical)</option>
+            <option value="social">🗣️ Social / Emotional Drain (Calls, meetings, tough conversations)</option>
+            <option value="micro">⚡ Low-Stamina Micro-Action (Quick email, booking, filing)</option>
+            <option value="restorative">🌿 Restorative (+1 Spoon Recovery - nap, walk, hydrate)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input-task-priority" class="form-label">Flexibility Level</label>
+          <select id="input-task-priority">
+            <option value="essential">⭐ Essential (Must be done today if capacity allows)</option>
+            <option value="flexible" selected>🍃 Flexible (Can be deferred without consequence)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn-secondary modal-close-btn">Cancel</button>
+          <button type="submit" class="btn-primary">Add to Plan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Morning Spoon Check-In -->
+  <div id="modal-checkin" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-checkin-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-checkin-title">🌅 Morning Spoon Calibration</h2>
+        <button class="btn-icon modal-close-btn" aria-label="Close dialog">✕</button>
+      </div>
+      <form id="form-checkin">
+        <p style="margin-bottom:1.25rem;">
+          Take a slow breath. Check in with your body and brain. How many spoons do you honestly have today?
+        </p>
+
+        <div class="form-group">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <label for="slider-daily-spoons" class="form-label">Daily Spoon Capacity</label>
+            <span id="slider-spoon-display" style="font-weight:800; color:var(--spoon-lavender); font-size:var(--text-lg);">6 Spoons</span>
+          </div>
+          <input type="range" id="slider-daily-spoons" min="1" max="12" value="6" step="1" style="cursor:pointer; accent-color:var(--spoon-lavender); margin:0.75rem 0;">
+        </div>
+
+        <div id="checkin-descriptor" class="form-group" style="background:var(--bg-surface-elevated); padding:1rem; border-radius:var(--radius-md); font-size:var(--text-sm); line-height:1.6;">
+          <strong style="color:var(--spoon-amber)">Moderate Capacity (4-7 Spoons)</strong><br>
+          Balanced day. Best suited for 1-2 core priorities accompanied by regular restorative breaks. Protect boundaries against extra meetings.
+        </div>
+
+        <div class="form-group">
+          <label for="select-sleep-quality" class="form-label">Rest Quality</label>
+          <select id="select-sleep-quality">
+            <option value="restful">Deep & Restful Sleep</option>
+            <option value="fair" selected>Fragmented or Moderate</option>
+            <option value="poor">Pain / Insomnia / Exhaustion</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn-secondary modal-close-btn">Cancel</button>
+          <button type="submit" class="btn-primary">Calibrate My Day</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Rest & Rebalance Protocol -->
+  <div id="modal-rebalance" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-rebalance-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-rebalance-title">🛡️ Rest & Rebalance Protocol</h2>
+        <button class="btn-icon modal-close-btn" aria-label="Close dialog">✕</button>
+      </div>
+      <div>
+        <div style="background:rgba(245,158,11,0.12); border:1px solid var(--spoon-amber); border-radius:var(--radius-md); padding:1rem; margin-bottom:1.25rem;">
+          <h3 style="color:#fde68a; font-size:var(--text-base); margin-bottom:0.25rem;">Nervous System Protection</h3>
+          <p style="color:#fff; font-size:var(--text-sm);">
+            You are operating with an energy deficit of <strong id="rebalance-deficit-num" style="color:var(--spoon-amber)">3 Spoons</strong>. Continuing to push through will risk post-exertional malaise or multi-day burnout.
+          </p>
+        </div>
+
+        <p style="font-size:var(--text-sm); margin-bottom:1rem;">
+          SpoonFlow will automatically defer your <strong>flexible, non-essential tasks</strong> to tomorrow with zero guilt notifications. You can also generate a compassionate boundary note for any teammates.
+        </p>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1.5rem;">
+          <button type="button" class="btn-secondary modal-close-btn">Keep My List</button>
+          <button type="button" id="btn-confirm-rebalance" class="btn-amber">
+            ✨ Protect My Energy & Defer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Gentle Boundary Generator -->
+  <div id="modal-boundary" class="modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-boundary-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modal-boundary-title">🛡️ Gentle Boundary Generator</h2>
+        <button class="btn-icon modal-close-btn" aria-label="Close dialog">✕</button>
+      </div>
+      <div>
+        <p style="font-size:var(--text-sm); margin-bottom:1.25rem;">
+          Communicate your capacity with kindness and confidence. Zero over-explaining.
+        </p>
+
+        <div class="form-group">
+          <label for="boundary-scenario-select" class="form-label">Scenario</label>
+          <select id="boundary-scenario-select">
+            <option value="capacity">At Full Capacity (Declining / Deferring task)</option>
+            <option value="reschedule">Rescheduling Meeting to Preserve Energy</option>
+            <option value="asyncOnly">Switching from Call to Async Written Update</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="boundary-recipient-select" class="form-label">Recipient</label>
+          <select id="boundary-recipient-select">
+            <option value="colleague">Teammate / Colleague</option>
+            <option value="manager">Manager / Team Lead</option>
+            <option value="client">Client / Stakeholder</option>
+            <option value="academic">Professor / Academic Advisor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tone Variation</label>
+          <div class="boundary-preset-tabs">
+            <button type="button" class="boundary-tone-btn active" data-tone="professional">Professional & Warm</button>
+            <button type="button" class="boundary-tone-btn" data-tone="concise">Concise & Direct</button>
+            <button type="button" class="boundary-tone-btn" data-tone="casual">Casual & Friendly</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="boundary-output" class="form-label">Crafted Message (Click to copy)</label>
+          <textarea id="boundary-output" class="boundary-output-box" rows="5" readonly></textarea>
+          <div class="boundary-copy-bar">
+            <button type="button" id="btn-copy-boundary" class="btn-primary">
+              📋 Copy to Clipboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Single-Task "Zero-Spill" Focus Rail -->
+  <aside id="focus-rail" class="focus-rail-overlay" aria-hidden="true" role="dialog" aria-labelledby="focus-task-title">
+    <button id="btn-focus-exit" class="btn-icon focus-exit-btn" aria-label="Exit Focus Mode">
+      ✕
+    </button>
+    <div class="focus-rail-content">
+      <span class="focus-badge">🎯 Single-Track Momentum Rail</span>
+      <h2 id="focus-task-title" class="focus-task-title">Active Task Title</h2>
+      <span id="focus-task-pill" class="badge-spoon badge-spoon-cost">🥄 Allocated: 2 Spoons</span>
+
+      <!-- Box Breathing Pacer Circle -->
+      <div class="breathing-circle-container" aria-label="Breathing pacer">
+        <div class="breathing-circle">
+          <span id="breathing-prompt" class="breathing-prompt">Inhale Gently</span>
+        </div>
+      </div>
+
+      <!-- Momentum Timer -->
+      <div id="focus-timer-display" class="focus-timer">15:00</div>
+
+      <div class="focus-controls">
+        <button id="btn-focus-timer-toggle" class="btn-secondary">
+          ▶️ Start
+        </button>
+        <button id="btn-focus-timer-reset" class="btn-icon" title="Reset timer">
+          🔄
+        </button>
+        <button id="btn-focus-complete" class="btn-emerald">
+          ✓ Mark Complete
+        </button>
+      </div>
+
+      <!-- Anti-Paralysis Micro-Step Input -->
+      <div style="background:var(--bg-surface); padding:1rem 1.25rem; border-radius:var(--radius-lg); border:1px solid var(--border-subtle); width:100%; max-width:480px; margin-top:0.5rem;">
+        <label for="input-micro-step" style="font-size:var(--text-xs); color:var(--text-muted); display:block; margin-bottom:0.4rem; text-align:left;">
+          Frozen? Break this into one 60-second micro-action:
+        </label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" id="input-micro-step" placeholder="e.g. Open the document, write 1 sentence..." style="font-size:var(--text-sm);">
+          <button type="button" id="btn-save-micro-step" class="btn-secondary btn-sm" style="white-space:nowrap;">Focus Micro-Step</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Application Script Module -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

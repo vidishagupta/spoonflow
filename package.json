@@ -1,0 +1,25 @@
+{
+  "name": "spoonflow",
+  "version": "1.0.0",
+  "description": "SpoonFlow - The Chronic Illness, Neurodivergent & Burnout-Aware Energy Budgeting OS",
+  "main": "index.html",
+  "scripts": {
+    "start": "node dev.js",
+    "dev": "node dev.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "accessibility",
+    "spoon-theory",
+    "neurodivergent",
+    "adhd",
+    "chronic-illness",
+    "burnout",
+    "productivity",
+    "taskforge",
+    "devpost",
+    "wcag-aaa"
+  ],
+  "author": "SpoonFlow Team",
+  "license": "MIT"
+}
