@@ -27,3 +27,4 @@ video_generation/
 media/
 scratch/
 temp/
+build_demo_video.py
