@@ -13,3 +13,17 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Media & Video Generation Artifacts (Do NOT commit to GitHub)
+*.mp4
+*.webm
+*.avi
+*.mov
+*.wav
+*.mp3
+*.vtt
+*.srt
+video_generation/
+media/
+scratch/
+temp/
